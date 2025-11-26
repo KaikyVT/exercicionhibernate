@@ -16,7 +16,7 @@ internal class Program
         ITransaction transaction = session.BeginTransaction();
 
         // ! Insert
-        Cliente cliente = new("Nome", "email@email.com", "senha123");
+        Cliente cliente = new("Exemplo", "exemplo@email.com", "senha123");
         session.Save(cliente);
         transaction.Commit();
 
