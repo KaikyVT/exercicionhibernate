@@ -12,11 +12,22 @@ namespace FluentNHibernateProjeto.infra.mapeamentos
         public PedidosMap()
         {
             Not.LazyLoad();
+
             Schema("projeto_nhibernate");
+
             Table("pedido");
+
             Id(pedido => pedido.Id).Column("id");
+
             Map(pedido => pedido.DataPedido).Column("datapedido");
-            References(pedido => pedido.IdCliente).Column("idcliente");
+
+            References(pedido => pedido.Cliente).Column("idcliente");
+
+            HasManyToMany(pedido => pedido.Produtos)
+            .Table("itemproduto")
+            .ParentKeyColumn("idpedido")
+            .ChildKeyColumn("idproduto")
+            .Cascade.All();
         }
     }
 }

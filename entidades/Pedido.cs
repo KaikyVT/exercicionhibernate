@@ -9,16 +9,18 @@ namespace FluentNHibernateProjeto.entidades
     {
         public virtual int Id { get; set; }
         public virtual DateTime DataPedido { get; set; }
-        public virtual Cliente IdCliente { get; set; }
+        public virtual Cliente Cliente { get; set; }
+        public virtual IList<Produto> Produtos { get; set; }
 
         protected Pedido()
         {
         }
 
-        public Pedido(Cliente cliente)
+        public Pedido(Cliente cliente, IList<Produto> produtos)
         {
             DataPedido = DateTime.Now;
-            IdCliente = cliente;
+            Cliente = cliente;
+            Produtos = produtos;
         }
     }
 }
